@@ -12,6 +12,7 @@ yfinance = "*"
 matplotlib = "*"
 nbconvert = "*"
 nbdime = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
