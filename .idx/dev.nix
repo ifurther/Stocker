@@ -2,13 +2,14 @@
 # see: https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  channel = "stable-25.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.python313
     pkgs.python313Packages.pip
     pkgs.pipenv
     pkgs.tree
+    pkgs.google-cloud-sdk
   ];
   # Sets environment variables in the workspace
   env = { };
@@ -34,6 +35,7 @@
       "oderwat.indent-rainbow"
       "aaron-bond.better-comments"
       "tamasfe.even-better-toml"
+      "googlecloudtools.-dataconnect-vscode"
     ];
     # Enable previews
     previews = {
@@ -69,9 +71,6 @@
         #     echo ".vscode/extensions.json not found. Skipping extension installation."
         #   fi
         # '';
-        setting-up-dev-env = ''
-          pipenv install
-        '';
         # add-vscode-to-gitignore = ''
         #   # Add .vscode/ to .gitignore if it's not already there
         #   if ! grep -qxF '.vscode/' .gitignore 2>/dev/null; then
@@ -90,6 +89,9 @@
       };
       # Runs when the workspace is (re)started
       onStart = {
+        setting-up-dev-env = ''
+          pipenv install
+        '';
         # Example: start a background task to watch and re-build backend code
         # watch-backend = "npm run watch-backend";
         # update-vscode-extensions = ''
