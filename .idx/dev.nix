@@ -101,6 +101,9 @@
         #     code --force --install-extension "$EXTENSION"
         #   done
         # '';
+        default.openFiles = [
+          "Stocker_analyze.ipynb"
+        ];
       };
     };
   };
