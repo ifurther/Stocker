@@ -13,10 +13,11 @@ matplotlib = "*"
 nbconvert = "*"
 nbdime = "*"
 python-dotenv = "*"
-# Platform-specific dependencies
 gunicorn = {version = "*", markers = "sys_platform == 'linux'"}
 waitress = {version = "*", markers = "sys_platform == 'win32'"}
 pywinpty = {version = "*", markers = "sys_platform == 'win32'"}
+ta-lib = "*"
+pandas-ta = "*"
 
 [dev-packages]
 
