@@ -1,0 +1,27 @@
+[project]
+name = "line-stockbot"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "pandas",
+    "ipykernel",
+    "firebase-admin",
+    "mplfinance",
+    "yfinance",
+    "matplotlib",
+    "nbconvert",
+    "nbdime",
+    "python-dotenv",
+    "gunicorn; sys_platform == \"linux\"",
+    "waitress; sys_platform == \"win32\"",
+    "pywinpty; sys_platform == \"win32\"",
+    "ta-lib",
+    "pandas-ta",
+]
+
+[dependency-groups]
+dev = [
+    "workers-py",
+]
