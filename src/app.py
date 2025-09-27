@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+
+
 from workers import WorkerEntrypoint
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
@@ -10,7 +14,16 @@ from linebot.v3.messaging import (
     AsyncMessagingApi,
     Configuration,
     ReplyMessageRequest,
-    TextMessage
+    TextMessage,
+    MessagingApi,
+    MessagingApiBlob,
+    RichMenuRequest,
+    RichMenuArea,
+    RichMenuSize,
+    RichMenuBounds,
+    URIAction,
+    RichMenuSwitchAction,
+    CreateRichMenuAliasRequest
 )
 from linebot.v3.exceptions import (
     InvalidSignatureError
@@ -23,6 +36,7 @@ from linebot.v3.webhooks import (
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+
 if channel_secret is None:
     print('Specify LINE_CHANNEL_SECRET as environment variable.')
     sys.exit(1)
