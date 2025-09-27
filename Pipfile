@@ -18,6 +18,8 @@ waitress = {version = "*", markers = "sys_platform == 'win32'"}
 pywinpty = {version = "*", markers = "sys_platform == 'win32'"}
 ta-lib = "*"
 pandas-ta = "*"
+line-bot-sdk = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
 
