@@ -68,6 +68,14 @@ async def root(req: Request):
     env = req.scope["env"]
     return {"message": "Here is an example of getting an environment variable: " + env.MESSAGE}
 
+@app.get('/chart')
+def chart(stock: str = Query(...), indicators: str = Query('KD')):
+    inds = tuple(x.strip().upper() for x in indicators.split(',') if x.strip())
+    df_all = prepare_stock_data_multi(DF_CACHE, inds)
+    df_stock = df_all.xs(stock, level='證券代號').sort_index()
+    png = render_chart(df_stock, inds)
+    return Response(content=png, media_type='image/png')
+
 class Item(BaseModel):
     name: str
     description: str | None = None
