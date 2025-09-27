@@ -20,6 +20,7 @@ dependencies = [
     "ta-lib",
     "pandas-ta",
     "line-bot-sdk>=3.19.1",
+    "uvicorn[standard]>=0.37.0",
 ]
 
 [dependency-groups]
