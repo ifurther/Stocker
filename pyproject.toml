@@ -1,7 +1,7 @@
 [project]
 name = "line-stockbot"
 version = "0.1.0"
-description = "Add your description here"
+description = "Line stock bot in cloudflare worker using the python"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi",
