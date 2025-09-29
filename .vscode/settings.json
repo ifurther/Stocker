@@ -1,7 +1,16 @@
 {
     "files.exclude": {
-        "*.json": true
+        "**/.json": true,
+        "**/.parquet": true,
+        "**/.pkl": true,
+        "**/.xls": true,
+        "**/.xlsx": true,
     },
     "notebook.markup.fontFamily": "Arial, sans-serif",
-    "editor.fontFamily": "Consolas, 'Courier New', monospace, Arial, sans-serif"
+    "editor.fontFamily": "Consolas, 'Courier New', monospace, Arial, sans-serif",
+    "notebook.outline.showCodeCells": true,
+    "notebook.output.scrolling": true,
+    "jupyter.themeMatplotlibPlots": true,
+    "files.autoSave": "afterDelay",
+    "python.analysis.autoImportCompletions": true
 }
