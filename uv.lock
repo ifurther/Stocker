@@ -1493,6 +1493,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "ipykernel" },
     { name = "workers-py" },
 ]
 
@@ -1518,7 +1519,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "workers-py" }]
+dev = [
+    { name = "ipykernel", specifier = ">=6.30.1" },
+    { name = "workers-py" },
+]
 
 [[package]]
 name = "llvmlite"
