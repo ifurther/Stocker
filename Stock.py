@@ -89,7 +89,7 @@ class Stocker:
     self.data_ta.columns = ['open', 'high', 'low', 'close', 'volume']
     self.data_ta = self.data_ta.swaplevel('交易日', '證券代號').sort_index()
 
-  def add_indicators(self, df_group):
+  def add_indicators(self, df_group) -> pd.DataFrame:
     df_group_ = df_group.copy()
     df_group_.ta.sma(length=20,append=True)
     df_group_.ta.rsi(length=14,append=True)
@@ -105,8 +105,8 @@ class Stocker:
     return df_group_ 
 
   def cal_data(self):
-     self.data_ta = self.data_ta.groupby(level=0, group_keys=False).apply(self.add_indicators)
-     self.data_ta.columns = ['open', 'high', 'low', 'close', 'volume', 'SMA_20', 'RSI_14',
+    self.data_ta = self.data_ta.groupby(level=0, group_keys=False).apply(self.add_indicators)
+    self.data_ta.columns = ['open', 'high', 'low', 'close', 'volume', 'SMA_20', 'RSI_14',
        'MACD', 'MACDh', 'MACDs', 'K',
        'D', 'STOCHh_14_3_3']
 
@@ -115,30 +115,36 @@ class Stocker:
     int_cols = ['成交股數',	'成交筆數',	'成交金額']
     if data is None:
        data = self.data
-    data.index.names=['交易日','證券代號']
+    #data.index.names=['交易日','證券代號']
     data[flaot_cols] = data[flaot_cols].apply(lambda x: pd.to_numeric(x, errors='coerce'))
     data[int_cols] = data[int_cols].apply(lambda x: pd.to_numeric(x, errors='coerce'))
     data.index=data.index.set_levels(pd.to_datetime(data.index.levels[0]), level='交易日')
     data.index=data.index.set_levels(data.index.levels[1].astype(pd.StringDtype), level='證券代號')
     if get_data is not None:
        return data
-  def save_db(self, data, db_name) -> None:
-    conn = sqlite3.connect('stocker.db')  #建立資料庫
-    cursor = conn.cursor()
-    self.data = self.data.drop(['level_0','交易日'],axis=1)
-    if self.data is not None:
-      self.data.to_sql('Stocker', conn, if_exists='append', index=True)
-    if self.data_ta is not None:
-      self.data_ta.to_sql('Stocker_ta', conn, if_exists='append', index=True)
+
+  def save_db(self, data:pd.DataFrame, db_name:str=None) -> None:
+    if db_name is None:
+       db_name = self.db_name
+    with sqlite3.connect(db_name) as conn:   #建立資料庫
+      self.data = self.data.drop(['level_0','交易日'],axis=1)
+      if self.data is not None:
+        self.data.to_sql('Stocker', conn, if_exists='append', index=True)
+      if self.data_ta is not None:
+        self.data_ta.to_sql('Stocker_ta', conn, if_exists='append', index=True)
  
-  def load_db_data(self, db_nmae) -> None:
-    with sqlite3.connect('stocker.db') as conn:  #建立資料庫
+  def load_db_data(self, db_name:str=None) -> None:
+    if db_name is None:
+      db_name = self.db_name
+    with sqlite3.connect(db_name) as conn:  #建立資料庫
       data = pd.read_sql('SELECT * FROM Stocker', conn, index_col=['交易日','證券代號'])
     self.correct_data()
     self.data=data
   
-  def load_db_data_ta(self, db_nmae) -> None:
-    with sqlite3.connect('stocker.db') as conn:  #建立資料庫
+  def load_db_data_ta(self, db_name:str=None) -> None:
+    if db_name is None:
+       db_name = self.db_name
+    with sqlite3.connect(db_name) as conn:  #建立資料庫
       data = pd.read_sql('SELECT * FROM Stocker_ta', conn, index_col=['交易日','證券代號'])
     self.correct_data()
     self.data=data

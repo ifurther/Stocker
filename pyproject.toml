@@ -18,7 +18,6 @@ dependencies = [
     "gunicorn; sys_platform == \"linux\"",
     "waitress; sys_platform == \"win32\"",
     "pywinpty; sys_platform == \"win32\"",
-    "ta-lib",
     "pandas-ta",
     "line-bot-sdk>=3.19.1",
     "uvicorn[standard]>=0.37.0",
