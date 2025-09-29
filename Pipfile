@@ -20,6 +20,7 @@ ta-lib = "*"
 pandas-ta = "*"
 line-bot-sdk = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+cloudflare = "*"
 
 [dev-packages]
 

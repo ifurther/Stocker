@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1ab28d82cc7bef45c406df331244df7f296c8b63f2f362656225dae643fd39aa"
+            "sha256": "dc128f0f3bd19f2dea13850c25d4abb066e5ca8d4e30b5a98ebe0ee5c632fa41"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -445,6 +445,15 @@
             "markers": "python_version >= '3.10'",
             "version": "==8.3.0"
         },
+        "cloudflare": {
+            "hashes": [
+                "sha256:6927135a5ee5633d6e2e1952ca0484745e933727aeeb189996d2ad9d292071c6",
+                "sha256:b1e1c6beeb8d98f63bfe0a1cba874fc4e22e000bcc490544f956c689b3b5b258"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==4.3.1"
+        },
         "colorama": {
             "hashes": [
                 "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
@@ -760,6 +769,14 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.2.18"
+        },
+        "distro": {
+            "hashes": [
+                "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed",
+                "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==1.9.0"
         },
         "executing": {
             "hashes": [

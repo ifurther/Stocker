@@ -1,5 +1,7 @@
 {
     "files.exclude": {
         "*.json": true
-    }
+    },
+    "notebook.markup.fontFamily": "Arial, sans-serif",
+    "editor.fontFamily": "Consolas, 'Courier New', monospace, Arial, sans-serif"
 }
