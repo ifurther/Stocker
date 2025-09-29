@@ -109,6 +109,7 @@ class Stocker:
      self.data_ta.columns = ['open', 'high', 'low', 'close', 'volume', 'SMA_20', 'RSI_14',
        'MACD', 'MACDh', 'MACDs', 'K',
        'D', 'STOCHh_14_3_3']
+
   def correct_data(self, data=None, get_data=None):
     flaot_cols = ['開盤價', '最高價', '最低價', '收盤價', '最後揭示買價', '本益比']
     int_cols = ['成交股數',	'成交筆數',	'成交金額']
@@ -125,11 +126,19 @@ class Stocker:
     conn = sqlite3.connect('stocker.db')  #建立資料庫
     cursor = conn.cursor()
     self.data = self.data.drop(['level_0','交易日'],axis=1)
-    self.data.to_sql('Stocker', conn, if_exists='append', index=True)
-    self.data_ta.to_sql('Stocker_ta', conn, if_exists='append', index=True)
-  def load_db(self, db_nmae) -> None:
-    conn = sqlite3.connect('stocker.db')  #建立資料庫
-    cursor = conn.cursor()
-    data = pd.read_sql('SELECT * FROM Stocker', conn, index_col=['交易日','證券代號'])
+    if self.data is not None:
+      self.data.to_sql('Stocker', conn, if_exists='append', index=True)
+    if self.data_ta is not None:
+      self.data_ta.to_sql('Stocker_ta', conn, if_exists='append', index=True)
+ 
+  def load_db_data(self, db_nmae) -> None:
+    with sqlite3.connect('stocker.db') as conn:  #建立資料庫
+      data = pd.read_sql('SELECT * FROM Stocker', conn, index_col=['交易日','證券代號'])
+    self.correct_data()
+    self.data=data
+  
+  def load_db_data_ta(self, db_nmae) -> None:
+    with sqlite3.connect('stocker.db') as conn:  #建立資料庫
+      data = pd.read_sql('SELECT * FROM Stocker_ta', conn, index_col=['交易日','證券代號'])
     self.correct_data()
     self.data=data
