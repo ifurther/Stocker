@@ -11,8 +11,8 @@
 x-args: &default-args
   UV_VER: "0.5.5"
   DEBIAN_VER: "bookworm"
-  WORKSPACE_NAME_: ${WORKSPACE_NAME}
-  PROJECT_NAME_: ${PROJECT_NAME}
+  WORKSPACE_NAME_: ${WORKSPACE_NAME:-test_workspaces}
+  PROJECT_NAME_: ${PROJECT_NAME:-Stocker}
 
 services: # Top level element to configure the arguments of multiple services.
   Stock: # "project" refers to the name of your project/application for which configurations are defined.
