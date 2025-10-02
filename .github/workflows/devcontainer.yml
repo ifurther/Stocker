@@ -67,5 +67,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Compose up vscode
-        run: docker compose -f '.devcontainer/docker-compose.yml' up -d --build 'vscode'
+      #- name: Compose up vscode
+      #  run: docker compose -f '.devcontainer/docker-compose.yml' up -d --build 'vscode'
