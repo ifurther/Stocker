@@ -14,8 +14,8 @@
   "name": "${localEnv:LOGNAME}.dev-container-uv.${localWorkspaceFolderBasename}",
   // Build image using docker compose based on build specs in docker-compose.yml
   "dockerComposeFile": ["./docker-compose.yml"],
-  "service": "myproject",
-  "runServices": ["myproject"],
+  "service": "Stock",
+  "runServices": ["Stock"],
   "workspaceFolder": "/vscode/workspace",
   "postCreateCommand": {
     "uv-sync--frozen": "uv sync --frozen --no-binary-package ${localWorkspaceFolderBasename}" // By default, uv installs projects and workspace members in editable mode, such that changes to the source code are immediately reflected in the environment.

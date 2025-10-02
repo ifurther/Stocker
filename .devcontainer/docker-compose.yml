@@ -15,7 +15,7 @@ x-args: &default-args
   PROJECT_NAME_: ${PROJECT_NAME}
 
 services: # Top level element to configure the arguments of multiple services.
-  Srtock: # "project" refers to the name of your project/application for which configurations are defined.
+  Stock: # "project" refers to the name of your project/application for which configurations are defined.
     build: # Tells Docker Compose to build the Docker image using the Dockerfile in the specified directory.
       context: .
       dockerfile: ./Dockerfile
