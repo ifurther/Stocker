@@ -54,6 +54,10 @@ jobs:
 
       - name: Build Image for VSCode
         uses: docker/build-push-action@v6
+        env:
+          DEV_USER: ifurther
+          PROJECT_NAME: Stocker
+          WORKSPACE_NAME: test_workspaces
         with:
           context: .
           file: .devcontainer/Dockerfile
