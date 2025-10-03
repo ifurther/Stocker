@@ -1,7 +1,7 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "line-stockbot"
+name = "blue-tree-81ae"
 compatibility_date = "2025-08-14"
-main = "src/entry.py"
+main = "src/app.py"
 compatibility_flags = ["python_workers"]
 
 
@@ -9,6 +9,6 @@ compatibility_flags = ["python_workers"]
 binding = "AI"
 
 [[d1_databases]]
-binding = "DB" # i.e. available in your Worker on env.DB
-database_name = "quotes" # REPLACE WITH YOUR DB NAME
-database_id = "408cddb7-e3f7-40d7-a4f7-33136a7fd3fa" # REPLACE WITH YOUR DB ID
+binding = "Stock"
+database_name = "Stock"
+database_id = "00fe33e0-509c-4743-a420-d16823905f22"
