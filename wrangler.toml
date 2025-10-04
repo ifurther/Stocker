@@ -1,14 +1,54 @@
 #:schema node_modules/wrangler/config-schema.json
 name = "blue-tree-81ae"
 compatibility_date = "2025-08-14"
+#main = "src/app.py"
+#compatibility_flags = ["python_workers"]
+type = "javascript"  # Node.js/ESM 模式
 main = "src/app.py"
-compatibility_flags = ["python_workers"]
-
 
 [ai]
 binding = "AI"
 
 [[d1_databases]]
+
 binding = "Stock"
 database_name = "Stock"
 database_id = "00fe33e0-509c-4743-a420-d16823905f22"
+
+
+# 觸發 Worker 的環境
+account_id = "<YOUR_CLOUDFLARE_ACCOUNT_ID>"
+
+# 日誌等設定
+[triggers]
+crons = ["0 16 * * 1-5"] # 選擇性，可設定每天 16:00 執行排程更新資料
+
+# Wrangler 發布環境設定
+[env.production]
+name = "line-stock-bot-prod"
+
+# Worker KV / D1 / R2 綁定
+[vars]
+LINE_CHANNEL_ACCESS_TOKEN = "<YOUR_LINE_CHANNEL_ACCESS_TOKEN>"
+LINE_CHANNEL_SECRET = "<YOUR_LINE_CHANNEL_SECRET>"
+
+[vars.AI]
+# Cloudflare AI 相關設定
+# 可選用 @cf/meta/llama-2-7b-chat-int8
+AI = "@cf/meta/llama-2-7b-chat-int8"
+
+# D1 Database
+[env.production.d1_databases]
+DB = "my_d1_database"
+
+# R2 Bucket
+[env.production.r2_buckets]
+R2_BUCKET = "my_r2_bucket"
+R2_ACCOUNT = "<YOUR_ACCOUNT_ID>"
+R2_KEY = "<YOUR_R2_KEY>"
+R2_SECRET = "<YOUR_R2_SECRET>"
+
+# 本地開發環境
+[dev]
+local_protocol = "http"
+port = 8787
